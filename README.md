@@ -1,4 +1,6 @@
 # Hedonistic Hebbian Neural Network
+[![Build Status](https://img.shields.io/travis/maael/HedonisticHebbianNeuralNetwork.svg?style=flat-square)](https://travis-ci.org/maael/HedonisticHebbianNeuralNetwork)
+
 A Hedonistic Hebbian Neural Network in python.
 
 [Neurons Just Want To Have Fun.](https://youtu.be/PIb6AZdTr-A)
@@ -12,3 +14,13 @@ Hebbian Learning is inspired by [Donald Hebb - The Organisation of Behaviour 194
 The three core postulates that Hebb proposes are nicely summarised in this [youtube video by Soma Barsen and Dr. Steven J. Barnes](https://youtu.be/xKYMQ_o5Xik). One of the key ideas used from Hebb's postulates is a basic idea from his second postulate, the Hebbian Cell Assembly, paraphrased as -
 
 > Cells that fire together, wire together.
+
+## Install
+```
+python install.py
+```
+
+## Test
+```
+pytest
+```
