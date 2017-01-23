@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from distutils.core import setup
+from setuptools import setup, find_packages
 
 setup(
   name='HHNN',
@@ -10,5 +10,5 @@ setup(
   download_url='https://github.com/maael/HedonisticHebbianNeuralNetwork',
   author='Matthew Elphick',
   author_email='matt.a.elphy@gmail.com',
-  packages=[ 'neuralnetwork' ]
+  packages=find_packages()
 )
