@@ -2,7 +2,8 @@ import os
 import pip
 
 ALL = [
-  'pytest == 3.0.6'
+  'pytest == 3.0.6',
+  'pylint == 1.6.5'
 ]
 
 NONCI = [
