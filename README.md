@@ -1,4 +1,6 @@
 # Hedonistic Hebbian Neural Network
+[![Build Status](https://img.shields.io/travis/maael/HedonisticHebbianNeuralNetwork.svg?style=flat-square)](https://travis-ci.org/maael/HedonisticHebbianNeuralNetwork)
+
 A Hedonistic Hebbian Neural Network in python.
 
 [Neurons Just Want To Have Fun.](https://youtu.be/PIb6AZdTr-A)
