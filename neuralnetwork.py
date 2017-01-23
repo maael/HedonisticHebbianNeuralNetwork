@@ -16,18 +16,18 @@ class Neuron:
       self.biasSetting = init['bias']
 
   def initBias(self):
-    if (self.inputCount > 0):
+    if self.inputCount > 0:
       self.bias = self.initWeight() if self.biasSetting == 'DEFAULT' else self.biasSetting
 
   def initWeight(self):
-    if (self.initialiser == 'gaussian'):
+    if self.initialiser == 'gaussian':
       return np.random.normal(0, (1 / np.sqrt(self.inputCount)))
     else:
       return np.random.uniform(-(2 / self.inputCount), (2 / self.inputCount))
 
   def initWeights(self):
-    if (self.inputCount > 0):
-      self.weights = [ self.initWeight() for x in range(0, self.inputCount) ]
+    if self.inputCount > 0:
+      self.weights = [self.initWeight() for x in range(0, self.inputCount)]
 
   def reinitialise(self):
     self.initBias()
@@ -50,10 +50,11 @@ class Network:
 
   def configure(self, layers):
     for (i, layer) in enumerate(reversed(layers)):
-      init = layer['init'] if 'init' in layer else 'DEFAULT'
       inputCount = 0 if (i == 0) else len(self.layers[-1])
       self.layers.append(
-        [ Neuron(inputCount, init=(self.configGetInitial(layer, x))) for x in range(0, layer['neurons'])
+        [Neuron(
+          inputCount,
+          init=(self.configGetInitial(layer, x))) for x in range(0, layer['neurons'])
         ])
     self.layers.reverse()
 
@@ -71,7 +72,7 @@ class Network:
       output.append([])
       activations.append([])
       for (n, neuron) in enumerate(layer):
-        if (l == 0):
+        if l == 0:
           output[l].append(
             { 'i': count,
               'sum': 0,
@@ -104,7 +105,7 @@ class Network:
     for (l, layer) in enumerate(reversed(forwardPass)):
       output.insert(0, [])
       for (n, passValue) in enumerate(reversed(layer)):
-        if (l == 0):
+        if l == 0:
           output[0].append(self.bpInput(passValue, expected[n]))
         else:
           output[0].insert(0, self.bpHidden(l, n, passValue, forwardPass, output))
@@ -131,8 +132,9 @@ class Network:
     for (l, layer) in enumerate(self.layers):
       for (n, neuron) in enumerate(layer):
         for (w, weight) in enumerate(neuron.weights):
-          if (l != (len(self.layers) - 1)):
-            newWeight = neuron.weights[w] + (self.step * deltas[l + 1][w] * forwardPass[l][n]['activation'])
+          if l != (len(self.layers) - 1):
+            weightChange = (self.step * deltas[l + 1][w] * forwardPass[l][n]['activation'])
+            newWeight = neuron.weights[w] + weightChange
             # if forwardPass[l][n]['i'] <= len(weightDeltas):
             #   newWeight += (self.momentum * weightDeltas[forwardPass[l][n]['i'] - 1])
             # newPreviousWeights.append(newWeight)
@@ -143,7 +145,7 @@ class Network:
     self.previousWeights = newPreviousWeights
 
   def solve(self, inputs):
-    return [ passValue['activation'] for passValue in self.forwardPass(inputs)[-1]]
+    return [passValue['activation'] for passValue in self.forwardPass(inputs)[-1]]
 
   def train(self, inputs, expected):
     forwards = self.forwardPass(inputs)
@@ -154,20 +156,20 @@ class Network:
   def error(self):
     return 0
 
-  def activate(self, x, deriv=False):
-    return self.sigmoid(x, deriv)
+  def activate(self, i, deriv=False):
+    return self.sigmoid(i, deriv)
 
-  def sigmoid(self, x, deriv):
-    if(deriv==True):
-      return x*(1-x)
-    return 1/(1+np.exp(-x))
+  def sigmoid(self, i, deriv):
+    if deriv:
+      return i*(1-i)
+    return 1/(1+np.exp(-i))
 
   def __str__(self):
     return '\n'.join(
-      [ 'Layer ' + str(i + 1) + '\n-------\n' + str(
-          '\n'.join(
-            [ 'Neuron ' + str(n + 1) + '\n' + str(neuron) + '\n' for (n, neuron) in enumerate(layer)
-            ])
+      ['Layer ' + str(i + 1) + '\n-------\n' + str(
+        '\n'.join(
+          ['Neuron ' + str(n + 1) + '\n' + str(neuron) + '\n' for (n, neuron) in enumerate(layer)
+          ])
         ) for (i, layer) in enumerate(self.layers)
       ]
     )

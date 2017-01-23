@@ -10,5 +10,4 @@ setup(
   download_url='https://github.com/maael/HedonisticHebbianNeuralNetwork',
   author='Matthew Elphick',
   author_email='matt.a.elphy@gmail.com',
-  packages=find_packages()
-)
+  packages=find_packages())

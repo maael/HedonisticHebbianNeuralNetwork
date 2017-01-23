@@ -1,11 +1,11 @@
 import os
 import pip
 
-_all_ = [
+ALL = [
   'pytest == 3.0.6'
 ]
 
-_nonci_ = [
+NONCI = [
   'numpy == 1.11.2'
 ]
 
@@ -14,6 +14,6 @@ def install(packages):
     pip.main(['install', package])
 
 if __name__ == '__main__':
-  install(_all_)
+  install(ALL)
   if 'CI' not in os.environ or os.environ['CI'] != 'true':
-    install(_nonci_)
+    install(NONCI)

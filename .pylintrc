@@ -1,0 +1,9 @@
+[BASIC]
+docstring-min-length=1000
+
+[FORMAT]
+indent-string='  '
+indent-after-paren=2
+
+[TYPECHECKER]
+ignored-modules=numpy.*
