@@ -1,3 +1,7 @@
+"""
+Basic test suite for the neuron and network
+"""
+
 import numpy as np
 from ..neuralnetwork import Neuron, Network
 
@@ -5,8 +9,8 @@ def test_neuron_simple_instance():
   input_count = 2
   neuron = Neuron(input_count)
   assert isinstance(neuron, Neuron)
-  assert neuron.inputCount == input_count
-  assert neuron.biasSetting == 'DEFAULT'
+  assert neuron.input_count == input_count
+  assert neuron.bias_setting == 'DEFAULT'
   assert neuron.initialiser == 'uniform'
   assert isinstance(neuron.weights, list)
   assert len(neuron.weights) == input_count
@@ -16,7 +20,7 @@ def test_neuron_simple_instance():
   assert neuron.bias >= -1
   assert neuron.bias <= 1
 
-def test_neuron_initialiser_gaussian():
+def test_neuron_init_gaussian():
   input_count = 2
   min_weight = 0 - (4 * (1 / np.sqrt(input_count)))
   max_weight = 0 + (4 * (1 / np.sqrt(input_count)))
@@ -44,7 +48,7 @@ def test_neuron_str():
 def test_network_simple_instance():
   network = Network([{'neurons': 1}, {'neurons': 2}, {'neurons': 3}])
   assert isinstance(network, Network)
-  assert network.weightsInitialiser == 'uniform'
+  assert network.weights_initialiser == 'uniform'
   assert network.momentum == 0.9
   assert network.step == 0.1
   assert isinstance(network.layers, list)
@@ -56,7 +60,7 @@ def test_network_simple_instance():
       assert isinstance(neuron, Neuron)
       assert isinstance(neuron.weights, list)
       if (i + 1) == len(network.layers):
-        assert neuron.inputCount == 0
+        assert neuron.input_count == 0
 
 def test_network_str():
   network = Network([{'neurons': 1}, {'neurons': 2}, {'neurons': 3}])

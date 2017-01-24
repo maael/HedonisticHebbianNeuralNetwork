@@ -1,4 +1,7 @@
 #!/usr/bin/env python
+"""
+Module information
+"""
 
 from setuptools import setup, find_packages
 

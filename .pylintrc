@@ -1,5 +1,6 @@
 [BASIC]
 docstring-min-length=1000
+include-naming-hint=y
 
 [FORMAT]
 indent-string='  '
@@ -7,3 +8,6 @@ indent-after-paren=2
 
 [TYPECHECKER]
 ignored-modules=numpy.*
+
+[MESSAGES CONTROL]
+disable=R0201

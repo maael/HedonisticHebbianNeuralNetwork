@@ -2,5 +2,5 @@ language: python
 python:
   - 3.4
 install: python install.py
-before_script: pylint neuralnetwork.py setup.py install.py test -E
+before_script: pylint neuralnetwork.py setup.py install.py test
 script: pytest

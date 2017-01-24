@@ -1,3 +1,9 @@
+"""
+Basic install script.
+Using a script instead of requirements.txt to avoid having
+to install numpy again on CI, which takes forever.
+"""
+
 import os
 import pip
 
